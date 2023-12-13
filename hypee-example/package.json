@@ -1,0 +1,47 @@
+{
+  "name": "hypee-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc && copyfiles -f index.html build",
+    "start:frontend": "cd app && npm run start:live",
+    "build:frontend": "sh scripts/mf-build.sh",
+    "build": "npm run build:frontend && npm run compile && electron-builder",
+    "start": "concurrently \"npm run start:frontend\" \"npm run compile && cross-env DEBUG=true electron .\""
+  },
+  "build": {
+    "files": [
+      "build/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "releases/${platform}/${arch}"
+    },
+    "extraMetadata": {
+      "main": "build/main.js"
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/unzip": "0.1.4",
+    "concurrently": "8.2.2",
+    "copyfile": "0.1.2",
+    "copyfiles": "2.4.1",
+    "cross-env": "7.0.3",
+    "electron": "27.0.4",
+    "typescript": "5.2.2"
+  },
+  "dependencies": {
+    "@types/decompress": "4.2.7",
+    "@types/unzipper": "0.10.9",
+    "axios": "1.6.1",
+    "decompress": "4.2.1",
+    "electron-is-dev": "2.0.0",
+    "gulp": "4.0.2",
+    "hypee-sdk": "0.0.4",
+    "unzipper": "0.10.14"
+  }
+}

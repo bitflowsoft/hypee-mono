@@ -1,0 +1,29 @@
+{
+  "name": "hypee-plugin-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "start-micro-modules": "cd view && npm run start:live",
+    "start:electron": "npm run compile && cross-env DEBUG=true electron .",
+    "start": "concurrently \"npm run start-micro-modules\" \"wait-on http://localhost:3000 && npm run start:electron\"",
+    "view:build": "sh ./scripts/build.sh",
+    "plugin:build": "npm run view:build && npm run compile",
+    "plugin:publish": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "8.2.2",
+    "cross-env": "7.0.3",
+    "electron": "27.0.4",
+    "typescript": "5.2.2",
+    "wait-on": "7.1.0"
+  },
+  "dependencies": {
+    "electron-is-dev": "2.0.0",
+    "hypee-sdk": "0.0.4"
+  }
+}
