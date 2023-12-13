@@ -1,0 +1,56 @@
+{
+  "name": "hypee-client",
+  "version": "0.0.1",
+  "description": "hypee client",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc && copyfiles -f index.html tab.html gnb.html dist",
+    "react-webpack-start": "webpack-dev-server --config webpack.dev.js",
+    "start:gnb": "cd gnb && npm run start:live",
+    "start:main": "cd main && npm run start:live",
+    "start:tabs": "cd tabs && npm run start:live",
+    "start-micro-modules": "concurrently \"npm run start:gnb\" \"npm run start:tabs\" \"npm run start:main\"",
+    "start:electron": "npm run compile && cross-env DEBUG=true electron .",
+    "start": "concurrently \"npm run start-micro-modules\" \"wait-on http://localhost:3002 && npm run start:electron\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitflowsoft/hypee-client.git"
+  },
+  "keywords": [
+    "hypee"
+  ],
+  "author": "bitflowsoft",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bitflowsoft/hypee-client/issues"
+  },
+  "homepage": "https://github.com/bitflowsoft/hypee-client#readme",
+  "devDependencies": {
+    "@babel/preset-env": "7.23.2",
+    "@babel/preset-react": "7.22.15",
+    "babel-loader": "9.1.3",
+    "concurrently": "8.2.2",
+    "copy-webpack-plugin": "11.0.0",
+    "copyfiles": "2.4.1",
+    "cross-env": "7.0.3",
+    "css-loader": "6.8.1",
+    "electron": "27.0.3",
+    "html-loader": "4.2.0",
+    "html-webpack-plugin": "5.5.3",
+    "typescript": "5.2.2",
+    "wait-on": "7.1.0",
+    "webpack": "5.89.0",
+    "webpack-cli": "5.1.4",
+    "webpack-dev-server": "4.15.1"
+  },
+  "dependencies": {
+    "electron-is-dev": "2.0.0",
+    "electron-log": "5.0.0",
+    "jotai": "2.5.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.18.0"
+  }
+}
